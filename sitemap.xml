@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/categories/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/categories/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/publication_types/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/publication_types/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/publication_types/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://suilin.me/publication/</loc>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://suilin.me/talk/</loc>
+    </url>
+    
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/tags/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/tags/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/tags/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+</urlset>

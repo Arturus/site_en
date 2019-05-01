@@ -1,0 +1,115 @@
+/*.greek {*/
+  /*!*font-family: '{{ .Get "body_font" }}', sans-serif;*!*/
+  /*font-family: 'Roboto', sans-serif;*/
+/*}*/
+
+.article-container {
+  /* My modification begin */
+  max-width: 900px;
+  /* My modification end */
+  padding: 0 20px 0 20px;
+  margin: 0 auto 0 auto;
+}
+
+.navbar-light .navbar-brand {
+  /*text-transform: none;*/
+}
+
+
+img[src$='#center']
+{
+  display: block;
+  margin: 0.7rem auto; /* you can replace the vertical '0.7rem' by
+                            whatever floats your boat, but keep the
+                            horizontal 'auto' for this to work */
+  /* whatever else styles you fancy here */
+}
+
+img[src$='#floatleft']
+{
+  float:left;
+  margin: 0.7rem;      /* this margin is totally up to you */
+  /* whatever else styles you fancy here */
+}
+
+img[src$='#floatright']
+{
+  float:right;
+  margin: 0.7rem;      /* this margin is totally up to you */
+  /* whatever else styles you fancy here */
+}
+
+.article-style img, .article-style video {
+  margin-top: 42px;
+  margin-bottom: 42px;
+}
+
+.article-style figure {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  margin-top: 0.1em;
+}
+
+figcaption.numbered:before {
+  text-transform: none;
+}
+
+/*blockquote {*/
+  /*color: #7a7a7a;*/
+  /*font-style: italic;*/
+  /*border-left: .25rem solid #2b2b2b;*/
+/*}*/
+
+.bib-title {
+  /*font-style: italic;*/
+  font-family: "Fira Sans Condensed", sans-serif;
+}
+
+.bib-authors {
+  font-size: 0.8rem;
+  margin-top: -0.2em;
+  margin-bottom: 0.2em;
+}
+
+.article-style>p, .article-style li, .article-style td, .article-style th, div.article-style {
+  /*font-family: "Merriweather", serif;*/
+  font-family: "PT Serif", serif;
+  /*font-family: "IBM Plex Sans", serif;*/
+  /*font-family: "PT Sans", serif;*/
+  /*font-family: "Open Sans", serif;*/
+  /*font-family: "IBM Plex Serif", serif;*/
+
+}
+
+/*.article-style p {*/
+  /*text-align: justify;*/
+/*}*/
+
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  margin-top: 1.5rem;
+  /*font-size: 1.75rem;*/
+  font-size: 2rem;
+
+}
+
+.page-subtitle, .article-widget li {
+  font-family: "Fira Sans Condensed", sans-serif;
+}
+/*#2b2b2b*/
+blockquote {
+  font-family: "Fira Sans", sans-serif;
+  border-left: .25rem solid;
+  text-align: left;
+}
+
+pre code {
+  font-size: .8rem;
+}
