@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 3.0.0">
+  <meta name="generator" content="Hugo 0.53" />
+  <meta name="author" content="Arthur Suilin">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="Embeddings for determining the topics of Instagram posts and influencers. Influencer selection by topic; thematic lookalikes and other applications.">
+
+  
+  <link rel="alternate" hreflang="ru" href="https://suilin.ru/project/topic_tensor/">
+  
+  <link rel="alternate" hreflang="en-us" href="https://suilin.me/project/topic_tensor/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#086377">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.4.1/css/all.min.css" integrity="sha512-/RUbtHakVMJrg1ILtwvDIceb/cDkk97rWKvfnFSTOmNbytCyEylutDqeEr9adIBye3suD3RfcsXLOLBqYRW4gw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400italic,700|PT+Mono|Fira+Sans|PT+Serif:400,400italic,700">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-38480657-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="https://suilin.me/index.xml" type="application/rss+xml" title="Arthur Suilin">
+  <link rel="feed" href="https://suilin.me/index.xml" type="application/rss+xml" title="Arthur Suilin">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://suilin.me/project/topic_tensor/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@asuilin">
+  <meta property="twitter:creator" content="@asuilin">
+  
+  <meta property="og:site_name" content="Arthur Suilin">
+  <meta property="og:url" content="https://suilin.me/project/topic_tensor/">
+  <meta property="og:title" content="TopicTensor: Instagram topics | Arthur Suilin">
+  <meta property="og:description" content="Embeddings for determining the topics of Instagram posts and influencers. Influencer selection by topic; thematic lookalikes and other applications.">
+  
+  
+    
+  <meta property="og:image" content="https://suilin.me/img/project/topic_tensor/incredible.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2021-06-27T00:00:00&#43;04:00">
+  
+  <meta property="article:modified_time" content="2021-06-27T00:00:00&#43;04:00">
+  
+
+  
+
+  <meta property="og:type" content="article"/>
+<meta name="yandex-verification" content="5753f991e1c3d96c" />
+<meta name="google-site-verification" content="5sd_7MZqiS3rR-1B3f-FqUkrWEd92TYr9FNEGkFE14I" />
+
+<script type="text/javascript" >
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+      try {
+        w.yaCounter21550249 = new Ya.Metrika2({
+          id:21550249,
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+        });
+      } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+      s = d.createElement("script"),
+      f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+    if (w.opera == "[object Opera]") {
+      d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+  })(document, window, "yandex_metrika_callbacks2");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/21550249" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+
+  <title>TopicTensor: Instagram topics | Arthur Suilin</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Arthur Suilin</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://suilin.ru/post/" target="_blank" rel="noopener">
+            
+            <span>Blog (RU)</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-globe" aria-hidden="true"></i>
+            <span>English</span>
+          </a>
+          <ul class="dropdown-menu">
+            
+            <li class="dropdown-item my-0 py-0 mx-0 px-0">
+              <a href="https://suilin.ru/project/topic_tensor/">
+                <span>Русский</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article article-project" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+<div class="article-header">
+  
+  
+  <img src="/img/project/topic_tensor/incredible.png" class="article-banner" itemprop="image" alt="">
+  
+
+  <span class="article-header-caption">Topic formed by tag #incredible</span>
+</div>
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">TopicTensor: Instagram topics</h1>
+
+  
+  <p class="page-subtitle">The project was implemented for Deep.Social</p>
+  
+
+  
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Arthur Suilin">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2021-06-27 00:00:00 &#43;0400 &#43;04" itemprop="datePublished">
+    <time datetime="2021-06-27 00:00:00 &#43;0400 &#43;04" itemprop="dateModified">
+      2021-06-27
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Arthur Suilin">
+  </span>
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+</div>
+
+  
+</div>
+
+
+
+  <div class="article-container">
+    
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="the-influencer-selection-problem">The Influencer selection problem</h2>
+
+<p>Advertisers using influencer posts to promote products and services have a big problem called targeting.
+If an advertiser advertises, for example, through Google Ads, he can focus on an arbitrarily narrow thematic
+audience segment that exactly matches the goods and services that he is promoting to the market.</p>
+
+<p>There is no such possibility on social networks: there are millions of potential influencers on Instagram where you
+ can advertise. How to choose from them those whose thematics suit the advertiser?
+Either the advertiser must actively use Instagram himself and a priori know those bloggers who are suitable for him
+(i.e. only large ones and only those to whom he himself is subscribed),
+or just give ads at random, hoping that they will reach at least a small percentage of the target audience.</p>
+
+<p>It is clear that both options are not very good, so Instagram is not very effective for &ldquo;niche&rdquo; medium and small advertisers.</p>
+
+<p>If this problem is solved, advertising on Instagram will become accessible and convenient for everyone, not just for big brands.</p>
+
+<h2 id="tree-like-hierarchy-of-topics-no-thanks">Tree-like hierarchy of topics? No, thanks.</h2>
+
+<p>The most obvious way to associate influencers with topics is through a tree-like hierarchy of topics.
+To do this, a topic hierarchy should be carefully thought out at first.
+  Each influencer is then manually (or with help of some ML model) assigned to the nodes of this hierarchy.</p>
+
+<p>Most advertising systems go this way, including such large ones as Facebook Ads.  But in fact, this is an inefficient solution.
+The number of topics potentially interesting to advertisers is very large. It would not be a mistake to say that it
+is potentially infinite: the more narrow the advertising niche, the finer division into topics is required.</p>
+
+<ul>
+<li>For example, there is a topic <strong>Food</strong>.</li>
+<li>It is obvious that the restaurant needs not only <strong>Food</strong>, but <strong>Food : Restaurants</strong>.</li>
+<li>If this is a Thai restaurant, then an even narrower topic is needed: <strong>Food : Restaurants : Thai cuisine</strong>.</li>
+<li>If this restaurant is located in London, it would be nice to add the topic <strong>Food : Restaurants : London</strong>, etc.</li>
+</ul>
+
+<p>But the topic hierarchy cannot grow indefinitely:</p>
+
+<ol>
+<li>It will become trivially inconvenient for the advertiser to work with such a large hierarchy.
+The size of a hierarchy that an ordinary person can effortlessly perceive and keep in his head is no more than 100 nodes.</li>
+<li>The more topics, the more difficult it is to attribute a blogger to specific topics and the more work is needed for this.
+It is generally impossible to do this work manually (there are several million bloggers).
+Of course, it&rsquo;s possible to use machine learning, but you still need to make a training dataset first,
+i.e. examples of the correct matches between topics and bloggers. Dataset is made up of people, people make mistakes,
+people are subjective in their views and assessments (different assessors will attribute the same blogger to different topics).</li>
+<li>You will have to spend a lot of effort on keeping the topics hierarchy up to date (new trends are constantly appearing,
+new topics are being opened and old ones are dying off), and on updating the training dataset.</li>
+</ol>
+
+<p>It turns out that a small hierarchy of topics will be too inflexible and give too coarse segments, while at the same time
+a large hierarchy will be inconvenient to work with. Another solution is needed.</p>
+
+<p><img src="topic_tree.jpg" width="560"/></p>
+
+<h2 id="the-thematics-is-set-by-the-advertiser">The thematics is set by the advertiser</h2>
+
+<p>What if the thematics could be defined with a set of keywords, like in Google Ads?
+Then the advertiser will be able to set up for himself any arbitrarily narrow thematics, and at the same time he will
+not have to crawl through a huge topic hierarchy.
+But in Google Ads, the keywords correspond to what potential customers are explicitly looking for, and what should the
+keywords in Instagram correspond to? Hashtags? But it&rsquo;s not that simple.</p>
+
+<ol>
+<li>A blogger writing about cars will not necessarily use the hashtag <code>#car</code>, he can use <code>#auto</code>, <code>#fastcars</code>,<code>#wheels</code>,
+<code>#drive</code> or brand names <code>#bmw</code>, <code>#audi</code>, etc. How is an advertiser supposed to guess what specific tags bloggers are using?
+In principle, the same problem exists in Google Ads: the advertiser must make considerable efforts to cover all possible keywords in his subject.</li>
+<li>A blogger might accidentally use a hashtag like <code>#car</code> if he bought a new car, or just saw and photographed an interesting car on the street.
+This does not mean at all that he writes on automotive topics.</li>
+<li>Bloggers often use popular tags that have nothing to do with the topic of the post, just to get into the search results for the tag (hashtag spam).
+For example, the tag <code>#cat</code> can be marked with a photo of a bearded hipster, a landscape with a sunset, or a selfie of yourself in a new outfit and surrounded by friends.</li>
+</ol>
+
+<p>Therefore, the selection of bloggers simply by the presence of tags set by the advertiser will not work well.
+We need more intelligent ways to solve this problem.</p>
+
+<h2 id="topic-modeling-theory">Topic modeling, theory</h2>
+
+<p>In modern natural language processing techniques, there is an approach called <em>topic modeling</em>.
+It is easiest to explain the application of topic modeling to our problem with a simple example.</p>
+
+<p>Let&rsquo;s imagine a very primitive social network in which people have only two main interests
+   - interest in <em>Food</em>, and interest in <em>Japan</em>.
+If interest strength is given by a number from 0 to 1, then any hashtags used by bloggers can be placed on a 2D chart.</p>
+
+
+
+
+<figure>
+
+<img src="tags2d.png" alt="Example of 2D topic space" width="600" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Example of 2D topic space
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p>It can be seen that any hashtag can be described by a pair of numbers corresponding to the X and Y coordinates in the thematic space.
+Tags related to the same topic are grouped into clusters, i.e. they have close coordinates.
+Using this chart, it&rsquo;s possible to calculate the relevance of a post to topics.
+We have to calculate, by all tags in the post, its “averaged” coordinates in the topic space (i.e., calculate <a href="https://en.wikipedia.org/wiki/Centroid" target="_blank">centroid</a>).
+The centroid coordinates along the X and Y axes will correspond to the relevance of the post to <em>Food</em> and <em>Japan</em> topics.
+The closer the coordinate is to 1, the higher the relevance. In the same way, by calculating the centroid of all
+blogger posts, it is possible to understand which topics the blogger’s content is generally relevant to.</p>
+
+<p>In real topic modeling, of course, tens and hundreds of topics are used, not two.
+Accordingly, tags have to be defined in high-dimensional space instead of 2D. More precise definition:</p>
+
+<ul>
+<li>There is a set of documents $D$ (in our case these are posts), a set of words $W$ (in our case tags) and a set of
+topics $T$, the size of which is predetermined.</li>
+<li>The content of documents can be represented as a set of document-word pairs: $(d, w), d \in D, w \in W_d$</li>
+<li>Each topic $t \in T$ is described by an unknown distribution $p(w|t)$ over set of words $w \in W$</li>
+<li>Each document $d\in D$ is described by an unknown distribution $p(t|d)$ over set of topics $t\in T$</li>
+<li>It is assumed that the distribution of words in documents depends only on the subject: $p(w|t,d)=p(w|t)$</li>
+<li>In the process of building a topic model, the algorithm finds the &ldquo;word&ndash;topic&rdquo; matrix $\mathbf{\Phi} =||p(w|t)||$
+and the &ldquo;topic&ndash;document&rdquo; matrix $\mathbf{\Theta} =| |p(t|d)||$ by the contents of the collection $D$.
+We are interested in the first matrix.</li>
+</ul>
+
+<p>Topic modeling is equivalent to <a href="https://en.wikipedia.org/wiki/Non-negative_matrix_factorization" target="_blank">Non-negative matrix factorization</a>
+The input contains a sparse &ldquo;word-document&rdquo; matrix $\mathbf{S} \in \mathbb{R}^{W \times D}$,
+which describes the probability of encountering the word $w$ in document $d$.
+Its approximation is calculated as a product of low-rank matrices
+$\mathbf{\Phi} \in \mathbb{R}^{W \times T}$ and $\mathbf{\Theta} \in \mathbb{R}^{T \times D}$.
+$$\mathbf{S} \approx \mathbf{\Phi}\mathbf{\Theta}$$
+For more information on topic modeling, see <a href="https://en.wikipedia.org/wiki/Topic_model" target="_blank">Wikipedia</a>.</p>
+
+<h2 id="topic-modeling-practice">Topic modeling, practice</h2>
+
+<p>In practice, thematic modeling produced mediocre results. The table below shows the results of modeling on 15 topics using the
+<a href="https://github.com/bigartm/bigartm" target="_blank">BigARTM</a> library:</p>
+
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Top tags</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>sky, clouds, sea, spring, baby, ocean, nyc, flower, landscape, drinks</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>beer, vintage, chill, school, rainbow, yoga, rock, evening, chicago, relaxing</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>sweet, chocolate, dance, rain, nike, natural, anime, old, wcw, reflection</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>foodporn, breakfast, delicious, foodie, handmade, gold, instafood, garden, healthy, vegan</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>architecture, california, lights, portrait, newyork, wine, blonde, familytime, losangeles, thanksgiving</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>nature, travel, autumn, london, fall, trees, tree, photoshoot, city, cake</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>flowers, design, inspiration, artist, goals, illustration, pizza, ink, glasses, money</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>winter, snow, catsofinstagram, sexy, cats, cold, quote, fire, disney, festival</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>work, mountains, paris, football, nails, video, florida, diy, free, japan</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>dog, puppy, wedding, dogsofinstagram, dogs, roadtrip, painting, trip, thankful, pet</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>coffee, quotes, river, yum, moon, streetart, sleepy, music, adidas, positivevibes</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>style, fashion, party, home, model, music, dress, goodvibes, couple, tired</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>fitness, motivation, gym, workout, drawing, dinner, fit, sketch, health, fresh</td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>beach, lake, usa, shopping, hiking, fashion, kids, park, freedom, sand</td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>makeup, cat, yummy, eyes, snapchat, homemade, tattoo, kitty, lips, mom</td>
+</tr>
+</tbody>
+</table>
+
+<p>It can be seen that some kind of reasonable structure can be traced, but the topics are far from perfect.
+Increasing the number of topics to 150 gives a relatively small improvement.</p>
+
+<p>Perhaps the reason is that topic modeling is designed to work with documents containing hundreds or thousands of words.
+In our case, most posts have only 2-3 tags. Other libraries ( <a href="https://radimrehurek.com/gensim" target="_blank">Gensim</a>,
+  <a href="http://mallet.cs.umass.edu/topics.php" target="_blank">Mallet</a>) also showed very modest results.</p>
+
+<p>Therefore, a different, simpler and at the same time more powerful modeling method was chosen.
+$ \newcommand{\sim}[2]{\operatorname{sim}(#1,#2)} $</p>
+
+<h2 id="topictensor-model">TopicTensor model</h2>
+
+<p>The main advantage of thematic modeling is the interpretability of the results obtained.
+For any word/tag, the output is a set of weights showing how close this word is to each topic from the entire set.</p>
+
+<p>But this plus imposes serious restrictions on the model, forcing it to fit strictly into a fixed number of topics, no more and no less.
+In real life, the number of topics of a large social network is almost infinite.
+Therefore, if we remove the requirement for the interpretability of topics (and their fixed number), model will become more effective.</p>
+
+<p>The result is a model close to the well-known <a href="https://en.wikipedia.org/wiki/Word2vec" target="_blank">Word2Vec</a> model.
+Each tag is represented as a vector in $N$-dimensional space: $w \in \mathbb{R}^N$.
+The degree of similarity (i.e. how close the topics are) between $w$ and $w&rsquo;$ tags can be calculated as a dot product:
+$$\sim{w}{w&rsquo;}=w \cdot w&rsquo;$$
+as Euclidean distance:
+ $$\sim{w}{w&rsquo;}=\|w-w&rsquo;\|$$
+as cosine similarity:
+$$\sim{w}{w&rsquo;}=\cos(\theta )=\frac{w \cdot w&rsquo;}{\|w \|\|w&rsquo; \|}$$</p>
+
+<p>The task of the model during training is to find such representations of tags that will be useful for one of the predictions:</p>
+
+<ul>
+<li>Based on a single tag, predict what other tags will be included in a post (Skip-gram architecture)(Edited)Restore original</li>
+<li>Based on all post tags except one, predict the missing tag (CBOW architecture, &ldquo;bag of words&rdquo;)</li>
+<li>Take two random tags from a post and predict the second based on the first one</li>
+</ul>
+
+<p>All these predictions come down to the fact that there is a target tag $w_t$ to be predicted,
+and a context $c$ represented by one or more tags included in the post. The model should maximize the probability of
+a tag depending on the context, this can be represented as a softmax criterion:</p>
+
+<p>$$P(w_t|c) = \operatorname{softmax}(\sim{w_t}{c})$$
+$$P(w_t|c) = \frac{\exp(\sim{w_t}{c})}{\sum_{w&rsquo; \in W}\exp(\sim{w&rsquo;}{c})}$$</p>
+
+<p>But calculating softmax over the entire set of $W$ tags is expensive (millions of tags may be involved in training),
+so alternative methods are used instead. They boil down to the fact that there is a positive example $(w_t,c)$ to be
+predicted, and randomly chosen negative examples $(w_1^{-}, c), (w_2^{-}, c),\dots,(w_n^{-}, c)$ being an example of how <em>not</em> to predict.
+Negative examples should be sampled from the same tag frequency distribution as in the training data.</p>
+
+<p>Loss function for a set of examples can be in the form of a binary classification (Negative sampling in the classic Word2Vec)
+$$L = \log(\sigma(\sim{w_t}{c})) +  \sum_i\log(\sigma(-\sim{w_i^-}{c}))$$
+$$\sigma(x) = \frac{1}{1+e^{-x}}$$
+or work like a ranking loss, pairwise comparing &ldquo;compatibility&rdquo; with the context of positive and negative examples:
+$$L = \sum_{i} l(\sim{w_t}{c}, \sim{w_i^-}{c})$$
+where $l(\cdot, \cdot)$ is a ranking function, for example max margin loss:
+$$l=\max(0,\mu+\sim{w_i^-}{c}−\sim{w_t}{c})$$</p>
+
+<p>The TopicTensor model is also equivalent to the matrix
+factorization, but instead of the &ldquo;document-word&rdquo; matrix (as in topic modeling),
+the &ldquo;context-tag&rdquo; matrix is ised. For some types of predictions, it turns into a matrix of mutual occurrence of tags &ldquo;tag-tag&rdquo;.</p>
+
+<h2 id="implementation-of-topictensor">Implementation of TopicTensor</h2>
+
+<p>Several possible ways to implement the model have been considered:
+Custom code using <a href="https://www.tensorflow.org/" target="_blank">Tensorflow</a>,
+custom code using <a href="https://pytorch.org/" target="_blank">PyTorch</a>, <a href="https://radimrehurek.com/gensim/" target="_blank">Gensim</a> library,
+[StarSpace] <a href="https://github.com/facebookresearch/StarSpace)" target="_blank">https://github.com/facebookresearch/StarSpace)</a> library.
+The last option was chosen as requiring minimal effort (all the necessary functionality is already there),
+producing high quality topics, and almost linearly parallelized on any number of cores (32 and 64-core machines were used to speed up learning).</p>
+
+<p>StarSpace by default uses <em>max margin ranking loss</em> as loss function and <em>cosine distance</em> as the proximity metric for vectors.
+Subsequent experiments with hyperparameters have shown that these default settings are optimal.</p>
+
+<h3 id="hyperparameter-tuning">Hyperparameter tuning</h3>
+
+<p>Before the final training, hyperparameters were tuned in order to find a balance between quality and acceptable training time.</p>
+
+<p>The quality was measured as follows: a set of posts was taken that the model did not see during the training.
+For each tag from the post (a total of $n$ tags in the post), the candidate tags closest to it were selected according
+to the cosine similarity criterion from the set of all $W$ tags:
+$$candidates_i=\operatorname{top_n}(\sim{w_t}{w&rsquo;}, \forall w&rsquo; \in W)$$
+$$i \in 1 \dots n$$
+It was calculated how many of these candidates matched the real tags in the post (number of matches $n^{+}$).
+$$quality=\frac{\sum n^+}{\sum n}$$
+Quality is the percentage of correctly matched tags for all posts from the sample.</p>
+
+<p>This method of quality assessment also implies that it is most optimal to train the model according to the skip-gram
+criterion (predict the rest of the tags by one tag). This was confirmed in practice: skip-gram training showed the best
+quality, although it turned out to be the slowest.</p>
+
+<p>The following hyperparameters were tuned:</p>
+
+<ul>
+<li>Dimension of topic vectors</li>
+<li>Number of training epochs</li>
+<li>Number of negative examples</li>
+<li>Learning rate</li>
+</ul>
+
+<h3 id="подготовка-данных">Подготовка данных</h3>
+
+<p>Tags have been normalized: reduced to lowercase, diacritics removed.</p>
+
+<p>The tags that were used by at least N different bloggers were selected to provide a diversity of usage contexts
+(depending on the language, N varied from 20 to 500).</p>
+
+<p>For each language, a list of top 1000 most frequent tags was made.
+From this list, commonly used words that do not carry a thematic meaning (me, you, together, etc), numerals,
+color names (red, yellow, etc.), and some tags especially loved by spammers were blacklisted.</p>
+
+<p>Each blogger&rsquo;s tags are reweighted according to how often they are used by that blogger.
+Most bloggers have &ldquo;favorite&rdquo; tags that are used in almost every post, and if such tags are not weighted down,
+an active blogger can skew the global statistics of tag co-occurency and the model will be biased.</p>
+
+<p>The final traininbg dataset consisted of about 8 billion tags out of 1 billion posts.
+Training took over three weeks on a 32-core server.</p>
+
+<h2 id="results">Results</h2>
+
+<p>The obtained embeddings had excellent topic separation, good generalization ability, and resistance to spam tags.</p>
+
+<p>Demo sample of top 10K tags is <a href="http://projector.tensorflow.org/?config=https://gist.githubusercontent.com/Arturus/5dc4d72432e0fc2a5d6f543178a39f1f/raw/790392fe844d86eb46a5ac07622ac6715f8c67de/sample.json" target="_blank">available for viewing</a>
+in Embedding Projector. After clicking on the link, you need to switch to the UMAP ot T-SNE mode
+(tab in the lower left part) and wait until the 3D projection is built. It&rsquo;s better to view projection in <code>Color By = logcnt</code> mode.</p>
+
+<h3 id="examples-of-topic-formation">Examples of topic formation</h3>
+
+<p>Let&rsquo;s start with the simplest. Let&rsquo;s set the topic with one tag and find the top 50 relevant tags.
+
+
+
+<figure>
+
+<img src="bmw.png" alt="Topic set by tag `#bmw`" width="800" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Topic set by tag <code>#bmw</code>
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+<img src="relevance.png" width="400"/>
+Tags are colored according to relevance. The size of a tag is proportional to its popularity.</p>
+
+<p>As you can see, TopicTensor has done a great job building the &lsquo;BMW&rsquo; thematics and found a lot of relevant tags that most people don&rsquo;t even know exist.</p>
+
+<p>Let&rsquo;s complicate the task and buuld the topic of several German auto brands:
+
+
+
+<figure>
+
+<img src="cars.png" alt="Topic set by tags `#bmw`, `#audi`, `#mercedes`, `#vw`" width="800" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Topic set by tags <code>#bmw</code>, <code>#audi</code>, <code>#mercedes</code>, <code>#vw</code>
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure></p>
+
+<p>This example shows TopicTesnor&rsquo;s ability to generalize:
+TopicTensor understood that we mean cars in general (tags <code>#car</code>, <code>#cars</code>).
+The model also realized that it was necessary to give preference to German cars (tags circled in red),
+and added “missing” tags: <code>#porsche</code> (also a German car brand),
+as well as spellings of tags that were not in the input: <code>#mercedesbenz</code> , <code>#benz</code> and <code>#volkswagen</code></p>
+
+
+
+
+<figure>
+
+<img src="apple.png" alt="Topic set by tag `#apple`" width="800" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Topic set by tag <code>#apple</code>
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p>Let&rsquo;s complicate the task even more and create a theme based on the ambiguous <code>#apple</code> tag, which can mean both a brand
+and just a fruit. It can be seen that the brand theme dominates, however, the fruit theme is also present in the form
+of <code>#fruit</code>, <code>#apples</code> and <code>#pear</code> tags.</p>
+
+<p>Let&rsquo;s try to highlight a pure “fruit” theme, for this we will add several tags related to the apple brand, with a negative weight.
+Accordingly, we will try to find tags that are closest (in embedding space) to the weighted sum of input tag embeddings (by default, the weight is equal to one):
+$$target = \sum_i w_i \cdot tag_i $$</p>
+
+
+
+
+<figure>
+
+<img src="apple_fruit.png" alt="Topic set by tags  `#apple`, `#iphone:-1`, `#macbook:-0.05` `#macintosh:-0.005`" width="800" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Topic set by tags  <code>#apple</code>, <code>#iphone:-1</code>, <code>#macbook:-0.05</code> <code>#macintosh:-0.005</code>
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p>It can be seen that the negative weights removed the brand theme, and only the fruit theme remained.</p>
+
+<p>
+
+
+<figure>
+
+<img src="mirror.png" alt="Тopic set by tag  `#mirror`" width="800" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Тopic set by tag  <code>#mirror</code>
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+TopicTensor is aware that the same concept can be expressed in different words in different languages, as seen in the <code>#mirror</code> example.
+Found tags that express the same concept:<br />
+<strong>mirror</strong> and <strong>reflection</strong> in English, <strong>зеркало</strong> and <strong>отражение</strong> in Russian,
+<strong>espejo</strong> and <strong>reflejo</strong> in Spanish, <strong>espelho</strong> and <strong>reflexo</strong> in Portuguese,
+<strong>specchio</strong> and <strong>riflesso</strong> in Italian, <strong>spiegel</strong> and <strong>spiegelung</strong> in German.</p>
+
+<p>
+
+
+<figure>
+
+<img src="boobs.png" alt="Тopic set by tag `#boobs`" width="800" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    Тopic set by tag <code>#boobs</code>
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+The last example shows that casual topics work just as well as branded ones.</p>
+
+<h3 id="blogger-selection">Blogger selection</h3>
+
+<p>For each blogger, all his posts are analyzed and the embeddings of all used tags are summarized.
+$$\beta=\sum_i^{|posts|}\sum_j^{|tags_i|} w_{ij}$$
+where $|posts|$ is the number of posts, $|tags_i|$ is the number of tags in the $i$th post.
+The resulting vector $\beta$ is <em>the topic of the blogger</em>.
+Then the system selects bloggers whose topic vector is closest to the topic vector specified by the user via tags.
+The bloger list is sorted by relevance and issued to the user.</p>
+
+<p>Additionally, the popularity of the blogger and the number of tags in his posts are taken into account.
+The final score, by which bloggers are sorted, is calculated as follows:
+$$score_i = {\sim{input}{\beta_i} \over \log(likes)^\lambda \cdot \log(followers)^\phi \cdot \log(tags)^\tau}$$
+where $\lambda, \phi, \tau$ are empirically chosen coefficients lying in the interval $0\dots1$</p>
+
+<p>Calculatiion of cosine distance across the entire array of bloggers (several million accounts)
+takes a significant amount of time. To speed up the blogger selection,
+the library [NMSLIB (<a href="https://github.com/nmslib/nmslib" target="_blank">https://github.com/nmslib/nmslib</a>) (Non-Metric Space Library) was used.
+It reduces the selection time by an order of magnitude due to usage of multidimensional indexes.</p>
+
+<h3 id="demo-site">Demo site</h3>
+
+<p>A demo site with a limited number of tags and bloggers is available at <a href="http://tt-demo.suilin.ru/" target="_blank">http://tt-demo.suilin.ru/</a>.
+On this site, you can experiment on your own with the formation of topics and blogger selection.</p>
+
+<h3 id="thematic-lookalikes">Thematic lookalikes</h3>
+
+<p>The $\beta$ vectors calculated for blogger selection can also be used to match similair bloggers with each other. In fact,
+lookalike matching is not much different from blogger selection.
+The only difference is the input: instead of a topic vector calculated as sum of tag embeddings,
+the topic vector $\beta$ of a specified blogger is given as input.
+The output is a list of bloggers whose thematics are close to those of a given blogger, in order of relevance.</p>
+
+<h3 id="фиксированные-тематики">Фиксированные тематики</h3>
+
+<p>As already mentioned,  there are no explicitly defined topics in TopicTensor.
+However, for some tasks we do need to have an explicit set/hierarchy of most prominent topics across all posts/bloggers.
+In other words, we need to extract most important topics from a vector space of tag embeddings.</p>
+
+<p>Самый очевидный способ экстракции тематик это кластеризация векторного
+представления тэгов, один кластер = одна тематика. Кластеризация проводилась в два
+этапа, т.к. алгоритмов, способных эффективно искать кластера в 200D
+пространстве, пока не существует.</p>
+
+<p>The most obvious way to extract topics is to cluster the tag embeddings, one cluster = one topic.
+Clustering was carried out in two stages, because algorithms that can efficiently search for a cluster in 200D space do not yet exist.</p>
+
+<p>At the first stage, dimensionality reduction was carried out using the [UMAP] library (<a href="https://github.com/lmcinnes/umap" target="_blank">https://github.com/lmcinnes/umap</a>).
+The dimension was reduced to 5D, cosine distance was used as a distance metric,
+the values of remaining hyperparameters were selected based on the results of clustering (second stage).</p>
+
+
+
+
+<figure>
+
+<img src="clusters3d.png" alt="An example of tag clustering in 3D space. Different clusters are marked with different colors (colors are not unique and may be repeated for different clusters)." width="600" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    An example of tag clustering in 3D space. Different clusters are marked with different colors (colors are not unique and may be repeated for different clusters).
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p>At the second stage, clustering was carried out using the <a href="https://github.com/scikit-learn-contrib/hdbscan" target="_blank">HDBSCAN</a> algorithm.
+Clustering results (English only) can be seen <a href="https://github.com/Arturus/clusters_new/blob/master/index.md" target="_blank">on GitHub</a>.
+Clustering identified about 500 topics (it&rsquo;s possible to adjust the number of topics within a wide range using UMAP and HDBSCAN hyperparameters).</p>
+
+<p>Inspection showed good topic coherence and no noticeable correlation between clusters.
+However, for the practical application, clusters need to be improved: remove useless ones
+(e.g. <a href="https://raw.githubusercontent.com/Arturus/clusters_new/master/jack.txt" target="_blank">private name cluster</a>,
+  <a href="https://raw.githubusercontent.com/Arturus/clusters_new/master/help.txt" target="_blank">negative emotion cluster</a>,
+  <a href="https://raw.githubusercontent.com/Arturus/clusters_new/master/people.txt" target="_blank">common words cluster</a>),
+   merge some close clusters.</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/instagram/">Instagram</a>
+  
+  <a class="badge badge-light" href="/tags/deep.social/">Deep.Social</a>
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/me_sq.jpg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Arthur Suilin</a></h5>
+    <h6 class="card-subtitle">Data Scientist</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="//www.linkedin.com/in/suilin-arthur-304b8219/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="//github.com/Arturus" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="//www.kaggle.com/asuilin" target="_blank" rel="noopener">
+          <i class="fab fa-kaggle"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="//instagram.com/asuilin" target="_blank" rel="noopener">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+  </div>
+</article>
+
+
+<div class="article-container article-widget">
+  <div class="post-nav">
+  
+  
+</div>
+
+</div>
+
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; 2015-2022 &middot; Arthur Suilin &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    
+    
+    <script src="/js/mathjax-config.500a6cbb2c0f345fcecc21b3116d6637aa78f1f11db8081ea581abe05390c2e8f3bbffe61be3cf0217baf785c40efceabe51050a4f007e69af94efd3643260e8.js" integrity="sha512-UApsuywPNF/OzCGzEW1mN6p48fEduAgepYGr4FOQwujzu//mG&#43;PPAhe694XEDvzqvlEFCk8AfmmvlO/TZDJg6A=="></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    <script>
+      
+      window.lazyLoadOptions = {elements_selector: ".lazy"};
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@11.0.5/dist/lazyload.min.js"></script>
+
+  </body>
+</html>
+

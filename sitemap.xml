@@ -4,10 +4,22 @@
     
     <url>
     
+      <xhtml:link rel="alternate" href="https://suilin.me/project/topic_tensor/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/project/topic_tensor/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/project/topic_tensor/</loc>
+      <lastmod>2021-06-27T00:00:00+04:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <xhtml:link rel="alternate" href="https://suilin.me/" hreflang="en"/>
       <xhtml:link rel="alternate" href="https://suilin.ru/" hreflang="ru"/>
     
       <loc>https://suilin.me/</loc>
+      <lastmod>2021-06-27T00:00:00+04:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -20,6 +32,41 @@
     
       <loc>https://suilin.me/categories/</loc>
       <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/tags/deep.social/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/tags/deep.social/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/tags/deep.social/</loc>
+      <lastmod>2021-06-27T00:00:00+04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/tags/instagram/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/tags/instagram/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/tags/instagram/</loc>
+      <lastmod>2021-06-27T00:00:00+04:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <xhtml:link rel="alternate" href="https://suilin.me/project/" hreflang="en"/>
+      <xhtml:link rel="alternate" href="https://suilin.ru/project/" hreflang="ru"/>
+    
+      <loc>https://suilin.me/project/</loc>
+      <lastmod>2021-06-27T00:00:00+04:00</lastmod>
     </url>
     
   
@@ -55,6 +102,7 @@
       <xhtml:link rel="alternate" href="https://suilin.ru/tags/" hreflang="ru"/>
     
       <loc>https://suilin.me/tags/</loc>
+      <lastmod>2021-06-27T00:00:00+04:00</lastmod>
       <priority>0</priority>
     </url>
     
