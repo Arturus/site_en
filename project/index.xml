@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2015-2022 &amp;middot; Arthur Suilin</copyright>
-    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://suilin.me/project/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>TopicTensor: Instagram topics</title>
       <link>https://suilin.me/project/topic_tensor/</link>
-      <pubDate>Sun, 27 Jun 2021 00:00:00 +0400</pubDate>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0200</pubDate>
       
       <guid>https://suilin.me/project/topic_tensor/</guid>
       <description>The Influencer selection problem Advertisers using influencer posts to promote products and services have a big problem called targeting. If an advertiser advertises, for example, through Google Ads, he can focus on an arbitrarily narrow thematic audience segment that exactly matches the goods and services that he is promoting to the market.
